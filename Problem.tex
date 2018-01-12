@@ -30,7 +30,7 @@
 outerlinewidth=5pt,innerlinewidth=0pt,outerlinecolor=red,roundcorner=5pt
 }
 
-% AMBIENTI MATEMATICI
+% MATHEMATICAL ENVIRONMENTS
 \newcommand{\R}{\mathbb{R}}
 \newcommand{\C}{\mathbb{C}}
 \newcommand{\tu}{\tilde{U}}
@@ -44,6 +44,45 @@ outerlinewidth=5pt,innerlinewidth=0pt,outerlinecolor=red,roundcorner=5pt
 % IMPORTARE CODICE IN MATLAB/OCTAVE
 \usepackage{listings}
 \usepackage{color}
+
+\usepackage{bigfoot} % to allow verbatim in footnote
+\usepackage[numbered,framed]{matlab-prettifier}
+
+\usepackage{filecontents}
+
+\let\ph\mlplaceholder % shorter macro
+\lstMakeShortInline"
+
+\lstset{
+	style              = Matlab-editor,
+	basicstyle         = \mlttfamily,
+	escapechar         = ",
+	mlshowsectionrules = true,
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 \begin{document}
 \maketitle
@@ -134,6 +173,27 @@ will present your numerical results.
 \begin{mdframed}
 	
 \end{mdframed}
+
+
+	\lstinputlisting[caption = {Some class definition}]{Matlab_Code/mesh.m}
+	
+	Before you use any "for"~loop, refresh your memory on Matlab blocks.%
+	\footnote{Any occurence of "for" must have a matching "end".} 
+	
+	\lstinputlisting[caption = {Sample code from Matlab}]{Matlab_Code/points.m}
+	\pagebreak
+	
+	\begin{lstlisting}[caption = {For educational purposes}]
+	% example of while loop using placeholders
+	while "\ph{condition}"
+	if "\ph{something-bad-happens}"
+	break
+	else
+	% do something useful
+	end
+	% do more things
+	end
+	\end{lstlisting}
 
 
 
