@@ -3,14 +3,13 @@
 \usepackage[T1]{fontenc} 
 \usepackage[english]{babel}
 
-\usepackage{amsmath,amsthm}
-\usepackage{amsmath,amssymb}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amssymb}
 \usepackage{amsfonts}
 \usepackage{mathtools}
 \usepackage{newtxtext}
 \usepackage{newtxmath}
-
-\usepackage{geometry}
 
 \usepackage{microtype}
 \usepackage{floatflt}
@@ -21,7 +20,7 @@
 \usepackage[backend=bibtex]{biblatex} %I need to use biblatex for some special features
 
 \date{\today}
-\author{Neil \& Enrique, Erik Pillon}
+\author{Neil Abhra Chowdhury \& Enrique Sanchez del Villar, Erik Pillon}
 \title{Finite Elements Project}
 
 \usepackage{mdframed}
@@ -30,7 +29,16 @@
 outerlinewidth=5pt,innerlinewidth=0pt,outerlinecolor=red,roundcorner=5pt
 }
 
-% MATHEMATICAL ENVIRONMENTS
+% ------------- Geometry ---------------------------
+\usepackage{geometry}
+\geometry{
+	a4paper,
+	total={170mm,257mm},
+	left=25mm,
+	right=25mm,
+	top=20mm,
+}
+% ------------- MATHEMATICAL ENVIRONMENTS ----------
 \newcommand{\R}{\mathbb{R}}
 \newcommand{\C}{\mathbb{C}}
 \newcommand{\tu}{\tilde{U}}
@@ -41,10 +49,9 @@ outerlinewidth=5pt,innerlinewidth=0pt,outerlinecolor=red,roundcorner=5pt
 \newcommand{\pd}[2]{\frac{\partial #1}{\partial #2}}
 \newcommand{\pds}[2]{\frac{\partial^2 #1}{\partial #2^2}}
 
-% IMPORTARE CODICE IN MATLAB/OCTAVE
+% ------------- IMPORTARE CODICE IN MATLAB/OCTAVE --
 \usepackage{listings}
 \usepackage{color}
-
 \usepackage{bigfoot} % to allow verbatim in footnote
 \usepackage[numbered,framed]{matlab-prettifier}
 
@@ -60,30 +67,7 @@ outerlinewidth=5pt,innerlinewidth=0pt,outerlinecolor=red,roundcorner=5pt
 	mlshowsectionrules = true,
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+% ---------------- BIGIN OF THE WORK -----------------
 \begin{document}
 \maketitle
 \begin{abstract}
@@ -126,7 +110,17 @@ Give the partial differential equation of the electrical problem.
 Give the boundary conditions of the electrical problem.
 Give the expression of the current density and of the Joule power density.
 \begin{mdframed}
-	
+	The Electrical problem can be modeled employing the fact that $ E=-\nabla U $. We also now that the electrical flux is defined through $ \vec{J}\cdot \vec{E} $. Using the fact that the divergence of the Electrical flux is 0 we obtain that:
+	\[ \nabla\cdot(-\sigma\nabla U)=0. \]
+	We focus now on the boundary conditions: we know that around the crucible there's insulator material, then we'll have that $ \pd{U}{x}=0 $ on the boundary, i.e. $ \nabla U\cdot \vec{n}=0 $. We can also take into consideration that $ \Delta U $ is fixed and so we can write the final system as
+	\[
+	\begin{cases}
+	\nabla\cdot(-\sigma\nabla U)=0, & 0<x<0.1,\,0.02<z<0.42\\
+	\nabla U\cdot \vec{n}=0,& x\in \partial V\\
+	U = \Delta U, & 0<x<0.02,\,z=0.4\\
+	U=0, & 0<x<0.04,\,z=0.
+	\end{cases}
+	\]
 \end{mdframed}
 
 \subsection{Thermal problem}
@@ -170,30 +164,38 @@ In this project, in a first step, each equation will be developed and test. In a
 two coupling equations will be developed and test. For numerical modeling the finite element method is
 used. In this project, describe the steps of the calculation and the variables used. Take time to define how you
 will present your numerical results.
+
+\section{Numerical Modeling of Heat Transfer Problem with Fineite Elements Method}
+
+\subsection{Study Domain and Mesh}
 \begin{mdframed}
+	The variable that we are going to use will be the \emph{length and the height of the domain}, as well as the \emph{number of the point} we want in our discretization. 
 	
+	A simple algorithm that takes care of that could be the one in Listing \ref{points}, where we have put in input of our function \texttt{mesh} the number of points in which we want to discretize our domain \texttt{nx,ny}.   
+	\lstinputlisting[label={points},caption={Mesh}]{Matlab_Code/points.m}
+	We stress the fact that in "for"~loop we take care also of the fact that if the point considered is a boundary point we have to come back and restart in \emph{another line}.
+	
+	The algorithm presented in Listing \ref{mesh} takes care of numbering in a proper way the elements basis and the points we have generated with the alorithm \texttt{points}.
+	\lstinputlisting[label={mesh},caption={Mesh of the Domain}]{Matlab_Code/mesh.m}
 \end{mdframed}
+\subsection{Galerkin’s Formulation of Heat Transfer Equation}
 
+We use the canonical change of variable, from cartesian to cylindrical, i.e., \begin{align}\label{change}
+(x,y,z)&\to(r,\theta,z)\\
+(x,y,z)&\mapsto(rcos(\theta),rsin(\theta),z)\nonumber
+\end{align}
+The change of variable given by Eq.\ref{change} gives as determinant of the Jacobian matrix $ r $, in such a way that the integration must be performed changing $ \diff x\diff y\diff z $ into $ r\diff r\diff\theta\diff z $.
 
-	\lstinputlisting[caption = {Some class definition}]{Matlab_Code/mesh.m}
-	
-	Before you use any "for"~loop, refresh your memory on Matlab blocks.%
-	\footnote{Any occurence of "for" must have a matching "end".} 
-	
-	\lstinputlisting[caption = {Sample code from Matlab}]{Matlab_Code/points.m}
-	\pagebreak
-	
-	\begin{lstlisting}[caption = {For educational purposes}]
-	% example of while loop using placeholders
-	while "\ph{condition}"
-	if "\ph{something-bad-happens}"
-	break
-	else
-	% do something useful
-	end
-	% do more things
-	end
-	\end{lstlisting}
+Moreover we have that 
+\[T=\sum_{j=1}^N\alpha_j(\xi,\eta,\zeta)\cdot T_j \]
+and so the differential becomes
+\[\nabla T=\sum_{j=1}^N\nabla\alpha_j(\xi,\eta,\zeta)\cdot T_j \]
+where through elementary calculations we can see that 
+\[\nabla \alpha_j=\begin{bmatrix} Jac J \end{bmatrix}^{-1}\begin{bmatrix}
+\pd{\alpha}{\xi}\\\pd{\alpha}{\eta}\\\pd{\alpha}{\zeta} 
+\end{bmatrix} \]
+\pagebreak
+
 
 
 
