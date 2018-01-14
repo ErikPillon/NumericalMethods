@@ -1,9 +1,0 @@
-\BOOKMARK [1][-]{section.1}{Statement of the Problem}{}% 1
-\BOOKMARK [1][-]{section.2}{Equations of the physical phenomenon and Boundary Conditions}{}% 2
-\BOOKMARK [2][-]{subsection.2.1}{Presentation of the study domain}{section.2}% 3
-\BOOKMARK [2][-]{subsection.2.2}{Electrical problem}{section.2}% 4
-\BOOKMARK [2][-]{subsection.2.3}{Thermal problem}{section.2}% 5
-\BOOKMARK [1][-]{section.3}{Principle of the Modeling}{}% 6
-\BOOKMARK [1][-]{section.4}{Numerical Modeling of Heat Transfer Problem with Fineite Elements Method}{}% 7
-\BOOKMARK [2][-]{subsection.4.1}{Study Domain and Mesh}{section.4}% 8
-\BOOKMARK [2][-]{subsection.4.2}{Galerkin’s Formulation of Heat Transfer Equation}{section.4}% 9
