@@ -1,0 +1,60 @@
+\subsection{Algorithm of the Finite Element Formulation of Heat Transfer Equation}
+The algorithm goes as follows:
+\begin{itemize}
+	\item Discretize the domain and build the mesh.
+	\item For each element $ e $ of the domain:
+	\begin{itemize}
+		\item Define the functions $ \alpha_i $
+		\item Construct the Jacobian matrix $ Jac $
+		\item Evaluate the Jacobian $ \det(Jac) $
+		\item Invert the Jacobian matrix and evaluate $ \nabla \alpha_i $
+	\end{itemize}
+\end{itemize}
+
+In the program we make use of the following functions:
+\begin{itemize}
+	\item \texttt{jacobian(M, E)} where \texttt{M} is the coordinates matrix and \texttt{E} is the mesh matrix.
+	\item \texttt{alpha(u,v)} where \texttt{u,v} are the quadrature nodes.
+	\item The functions \texttt{points} and \texttt{mesh} as already stated in Section \ref{sec:4.1} 
+\end{itemize}
+
+
+
+\subsection{Programming and calculation}
+\subsubsection{Construct the program: main program and functions}
+\lstinputlisting[label={main},caption={main program}]{Matlab_Code/main.m}
+
+
+
+\section{Model the Electrical Problem with the Finite Elements Method}
+\subsection{Study Domain and Mesh}
+Since the domian of interest of the electric problem is larger than the thermal problem, we have to slightly modify our algorithm. We then have the algorithm in Listing \ref{points_electric}, where we have put in input of our function \texttt{mesh electric} the number of points in which we want to discretize our domain.
+   
+\lstinputlisting[label={points_electric},caption={Points}]{Matlab_Code/points_electric.m}
+
+\lstinputlisting[label={mesh_electric},caption={Build relationship for local point and overall point}]{Matlab_Code/mesh_electric.m}
+\subsection{Galerkin’s Formulation of the Electrical Equation}
+The projection of the partial differential equation on a basis element is
+\[\iiint_{\omega} \alpha_i \nabla\cdot(-\sigma\nabla U)\diff\Omega=0, \quad \forall i \]
+and then the \textbf{weak formulation for the electric part} becomes
+\begin{equation}
+\iiint_{\omega}\sigma\alpha_i\cdot\nabla U\diff \Omega=0,\quad \forall i.
+\end{equation}
+The boundary conditions given can be modelized in the following fashion
+\[\begin{cases}
+	U = 0, &\text{on the top of the crucible,}\\
+	U = U_0, &\text{on the bottom of the crucible,}\\
+	J\cdot n=0, &\text{on all the other surfaces.}
+\end{cases} \]
+As before, the elementary element of surface and volume are given by the canonical change of variables, from cartesian to cylindrical, i.e., \begin{align}\label{change2}
+(x,y,z)&\to(r,\theta,z)\\
+(x,y,z)&\mapsto(rcos(\theta),rsin(\theta),z)\nonumber
+\end{align}
+The change of variable given by Eq.\ref{change2} gives as determinant of the Jacobian matrix the element $ r $, in such a way that the integration must be performed changing $ \diff x\diff y\diff z $ into $ r\diff r\diff\theta\diff z $.
+
+The second change of variable will be 
+\begin{align}\label{change3}
+(r,\theta,z)&\to(\xi,\eta)\\
+(r,\theta,z)&\mapsto(\xi(r,z),\eta(r,z)\nonumber
+\end{align}
+and we will have $ dxdydz=det(Jac)d\xi d\eta $
