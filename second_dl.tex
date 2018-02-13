@@ -70,6 +70,34 @@ Now we can identify the element basis $ \beta_i $ with the element basis $ \alph
 	
 	Then we have that 
 	\[ 2\pi\iint_{\Omega}\kappa\nabla\alpha_i\nabla T\,r\diff r\diff z-2\pi\int_{\Gamma}\alpha_i\kappa\nabla T\cdot\vec{n}\diff z=2\pi\iint_{\Omega}\alpha_i Q\,r\diff r\diff z. \]
+	
+	In particular we will perform this transformation
+	\[\iint_ef(x,y)\diff x\diff y=\int_{-1}^1\int_{-1}^1f(x(u,v),y(u,v))det(Jac)\diff u\diff v \]
+	where \\
+	\begin{minipage}{\linewidth}
+		\begin{minipage}{.325\linewidth}
+			\[\begin{cases}
+			x(u,v)=\sum_{i=1}^{N}\alpha_i(u,v)\cdot x_i\\
+			y(u,v)=\sum_{i=1}^{N}\alpha_i(u,v)\cdot y_i
+			\end{cases}\]
+		\end{minipage}
+		and
+		\begin{minipage}{.675\linewidth}
+			\[
+			\det(Jac)=\begin{vmatrix}
+			\pd{x}{u}&\pd{y}{u}\\
+			\pd{x}{v}&\pd{y}{v}
+			\end{vmatrix}
+			=
+			\begin{vmatrix}
+			\sum_{i=1}^{N}\frac{\partial\alpha_i(u,v)}{\partial u}\cdot x_i &\sum_{i=1}^{N}\frac{\partial\alpha_i(u,v)}{\partial u}\cdot y_i\\
+			\sum_{i=1}^{N}\frac{\partial\alpha_i(u,v)}{\partial v}\cdot x_i &\sum_{i=1}^{N}\frac{\partial\alpha_i(u,v)}{\partial v}\cdot y_i
+			\end{vmatrix}
+			\]
+		\end{minipage}
+	\end{minipage}
+	and therefore the integral we have to evaluate become a summation with a suitable quadrature formula
+	\[\iint_ef(x,y)\diff x\diff y= \sum_{i\in\{nodes\}}f(x(u_i,y_i),y(u_i,y_i))\det(J(u_i,y_i))w_i \]
 \end{mdframed}
 \subsubsection{Give the expression of the integrals on the reference element}
 The expression for each element of the basis is then
