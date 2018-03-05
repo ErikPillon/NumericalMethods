@@ -5,17 +5,17 @@ The algorithm goes as follows:
 	\item Discretize the domain and build the mesh.
 	\item For each element $ e $ of the domain:
 	\begin{itemize}
-		\item Define the functions $ \alpha_i $
-		\item Construct the Jacobian matrix $ Jac $
+		\item Construct the Jacobian matrix $ Jac $ with the functions $ \alpha_i $
 		\item Evaluate the Jacobian $ \det(Jac) $
-		\item Invert the Jacobian matrix and evaluate $ \nabla \alpha_i $
+		\item Evaluate all the 16 terms $ \nabla\alpha_i\nabla\alpha_j $ with the help of the Gauss quadrature formula.
 	\end{itemize}
 \end{itemize}
 
 In the program we make use of the following functions:
 \begin{itemize}
-	\item \texttt{jacobian(M, E)} where \texttt{M} is the coordinates matrix and \texttt{E} is the mesh matrix.
-	\item \texttt{alpha(u,v)} where \texttt{u,v} are the quadrature nodes.
+	\item \texttt{jacobian(M, Elem, e)} where \texttt{M} is the coordinates matrix and \texttt{Elem} is the mesh matrix, while \texttt{e} is the global element taken into consideration.
+	\item \texttt{alpha(xi,eta)} where \texttt{xi,eta} are the local coordinates.
+	\item \texttt{update} for updating the global matrix with the 16 values obtained for each element $ e $. 
 	\item The functions \texttt{points} and \texttt{mesh} as already stated in Section \ref{sec:4.1} 
 \end{itemize}
 
@@ -31,6 +31,7 @@ Where we used the function \texttt{jacobian} and \texttt{alpha} listed below.
 
 \lstinputlisting[label={alpha},caption={Function for the creation of the alpha functions and the derivatives of the latter}]{Matlab_Code/alpha.m}
  
+\lstinputlisting[label={update},caption={Function for update the global matrix with the values obtained for the local element $ e $}]{Matlab_Code/update.m}
 
 
 
