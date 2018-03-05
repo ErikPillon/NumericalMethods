@@ -1,5 +1,5 @@
-% in the following we describe step-by-step all the procedure for solving
-% the thermal part of the problem
+clc; clear all; close all;
+% this is the main file
 
 %% discretization of the domain and building of the mesh for the thermal part
 % initialization of the variables lx, ly, nx, ny
@@ -8,35 +8,49 @@
 
 % creation of the points and of the mesh
 [M, N_points] = points(lx,ly,nx,ny);
-[Elements, N_elements] = mesh(lx,ly,nx,ny,M);
-[b_Elements, N_b_elements] = b_elements(lx,ly,nx,ny,M);
+[Elem, N_elements] = mesh(lx,ly,nx,ny,M);
+[b_Elem, N_b_elements] = b_elements(lx,ly,nx,ny,M);
 
 %% initialization of the points for the gauss quadrature formula
 w=[0.347855 0.652145 0.652145 0.347855];
 u=[-0.861136 -0.339981 0.339981 0.861136];
 
+%% creation of the big matrices
+% this matrix has to be filled with all the terms of interactions between
+% the internal elements
+Interaction = zeros(N_points);
+
+% this matrix must bel filled with the terms given by the boundary effects
+Bound = zeros(N_points);
+
 %% evaluation of the integral on the variuos elements of the basis
 for e = 1:N_elements
     % creation of the Jacobian matrix
-    [Jac] = jacobian(M, E, e); 
+    [Jac] = jacobian(M, Elem, e); 
     J = det(Jac); %jacobian
+    A = zeros(4);
     for i = 1:4
         for j=1:4
             % evaluation of the 4x4 matrix 
             % here we will need the gauss points
         end
     end
-    % update the global matrix values
-    
-    % evaluate the surface terms
-    
-    % update the global matrix
+    % update the global matrix values; it will recollect the global number
+    % from the local number and the element e
+    Interaction = update(Interaction, Elem, e, A);
     
 end
     
 for f = 1:N_b_elements
-    % evaluation of the surface contribution
-    
-    % update the right hand side of the equation term
+    B = zeros(2);
+    for i = 1:2
+        for j=1:2
+            % evaluation of the 2x2 matrix 
+            % here we will need the gauss points
+        end
+    end
+    % update the global matrix values; it will recollect the global number
+    % from the local number and the element e
+    Bound = update(Bound, b_Elem, e, B);
 end
 
