@@ -1,0 +1,20 @@
+\BOOKMARK [1][-]{section.1}{Statement of the Problem}{}% 1
+\BOOKMARK [1][-]{section.2}{Equations of the physical phenomenon and Boundary Conditions}{}% 2
+\BOOKMARK [2][-]{subsection.2.1}{Presentation of the study domain}{section.2}% 3
+\BOOKMARK [2][-]{subsection.2.2}{Electrical problem}{section.2}% 4
+\BOOKMARK [2][-]{subsection.2.3}{Thermal problem}{section.2}% 5
+\BOOKMARK [1][-]{section.3}{Principle of the Modeling}{}% 6
+\BOOKMARK [1][-]{section.4}{Numerical Modeling of Heat Transfer Problem with Finite Elements Method}{}% 7
+\BOOKMARK [2][-]{subsection.4.1}{Study Domain and Mesh}{section.4}% 8
+\BOOKMARK [2][-]{subsection.4.2}{Galerkin\220s Formulation of Heat Transfer Equation}{section.4}% 9
+\BOOKMARK [3][-]{subsubsection.4.2.1}{Projection of the partial differential equation on an element of the basis of the functions \040i }{subsection.4.2}% 10
+\BOOKMARK [3][-]{subsubsection.4.2.2}{Give the weak formulation of the Galerkin\220s method. Introduce the boundary conditions in the formulation.}{subsection.4.2}% 11
+\BOOKMARK [3][-]{subsubsection.4.2.3}{Precise the expression of the elementary volume, the elementary surface for respectively the volume integral and surface integral.}{subsection.4.2}% 12
+\BOOKMARK [3][-]{subsubsection.4.2.4}{Give the expression of the integrals on the reference element}{subsection.4.2}% 13
+\BOOKMARK [3][-]{subsubsection.4.2.5}{Detail the expression of the elementary matrix on an element \040e . Precise the size of each elementary matrix \(sub matrix\). Precise the expression of each integral and the principle of calculation. For each integral, precise the nature of the element \040e }{subsection.4.2}% 14
+\BOOKMARK [2][-]{subsection.4.3}{Algorithm of the Finite Element Formulation of Heat Transfer Equation}{section.4}% 15
+\BOOKMARK [2][-]{subsection.4.4}{Programming and calculation}{section.4}% 16
+\BOOKMARK [3][-]{subsubsection.4.4.1}{Construct the program: main program and functions}{subsection.4.4}% 17
+\BOOKMARK [1][-]{section.5}{Model the Electrical Problem with the Finite Elements Method}{}% 18
+\BOOKMARK [2][-]{subsection.5.1}{Study Domain and Mesh}{section.5}% 19
+\BOOKMARK [2][-]{subsection.5.2}{Galerkin\220s Formulation of the Electrical Equation}{section.5}% 20
