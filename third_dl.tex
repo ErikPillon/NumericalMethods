@@ -1,3 +1,4 @@
+% !TeX spellcheck = en_US
 \subsection{Algorithm of the Finite Element Formulation of Heat Transfer Equation}
 The algorithm goes as follows:
 \begin{itemize}
@@ -32,6 +33,7 @@ Since the domian of interest of the electric problem is larger than the thermal 
    
 \lstinputlisting[label={points_electric},caption={Points}]{Matlab_Code/points_electric.m}
 
+
 \lstinputlisting[label={mesh_electric},caption={Build relationship for local point and overall point}]{Matlab_Code/mesh_electric.m}
 \subsection{Galerkin’s Formulation of the Electrical Equation}
 The projection of the partial differential equation on a basis element is
@@ -52,9 +54,10 @@ As before, the elementary element of surface and volume are given by the canonic
 \end{align}
 The change of variable given by Eq.\ref{change2} gives as determinant of the Jacobian matrix the element $ r $, in such a way that the integration must be performed changing $ \diff x\diff y\diff z $ into $ r\diff r\diff\theta\diff z $.
 
-The second change of variable will be 
+The second change of variables will be 
 \begin{align}\label{change3}
 (r,\theta,z)&\to(\xi,\eta)\\
 (r,\theta,z)&\mapsto(\xi(r,z),\eta(r,z)\nonumber
 \end{align}
-and we will have $ dxdydz=det(Jac)d\xi d\eta $
+and we will have $ dxdydz=det(Jac)d\xi d\eta $.
+
