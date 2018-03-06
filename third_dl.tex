@@ -8,6 +8,7 @@ The algorithm goes as follows:
 		\item Construct the Jacobian matrix $ Jac $ with the functions $ \alpha_i $
 		\item Evaluate the Jacobian $ \det(Jac) $
 		\item Evaluate all the 16 terms $ \nabla\alpha_i\nabla\alpha_j $ with the help of the Gauss quadrature formula.
+		\item Update the global matrix with the function \texttt{update}
 	\end{itemize}
 \end{itemize}
 
@@ -33,7 +34,7 @@ Where we used the function \texttt{jacobian} and \texttt{alpha} listed below.
  
 \lstinputlisting[label={update},caption={Function for update the global matrix with the values obtained for the local element $ e $}]{Matlab_Code/update.m}
 
-
+\lstinputlisting[label={dIntegral},caption={Function for evaluating the double integral$ \iint\nabla\alpha_i\nabla\alpha_j $]{Matlab_Code/double_integral.m}
 
 \section{Model the Electrical Problem with the Finite Elements Method}
 \subsection{Study Domain and Mesh}

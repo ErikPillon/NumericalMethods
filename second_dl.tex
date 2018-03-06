@@ -1,4 +1,4 @@
-
+% !TeX spellcheck = en_US
 \section{Numerical Modeling of Heat Transfer Problem with Finite Elements Method}
 \subsection{Study Domain and Mesh}
 \label{sec:4.1}
@@ -127,9 +127,13 @@ Then the final expression will be
 \subsubsection{Detail the expression of the elementary matrix on an element $ e $. Precise the size of each elementary matrix (sub matrix). Precise the expression of each integral and the principle of calculation. For each integral, precise the nature of the element $ e $} 
 
 The elementary matrix of an element $ e $ is given by the inner product $ \nabla\alpha_i\nabla\alpha_j $. In particular we'll have a matrix $ A_{ij}^e $ in which we will have in position $ (i,j) $ the element $ \nabla\alpha_i\nabla\alpha_j $. 
+The matrix will be evaluated through a 2-dimensional quadrature formula; in 1-dimension quadrature formula allow us to pass from a continuous integral to a discrete sum of values. First of all we have to rescale the integral extrema to 1 and -1,
+\[\int_{a}^{b}f(x)\,dx = \frac{b-a}{2}\int_{-1}^{1}f\left(\frac {b-a}{2}x+ \frac{a+b}{2}\right)\, dx. \]
+Then the discretization will become
+\[ \frac{b-a}{2} \sum_{i=1}^{n}w_{i}f\left(\frac {b-a}{2}x_{i}+ \frac{a+b}{2}\right),\]
+where suitable values $ x_i $ and weights $ w_i $ will be taken.
 
-
-The matrix $ A_{ij}^e $ is a $ 4\times4 $ matrix, for each inner element. For the outer element it will be a $ 3\times3 $ or $ 2\times2 $ depending on the position. 
+The matrix $ A_{ij}^e $ is a $ 4\times4 $ matrix, for each inner element. For the outer element it will be a $ 2\times2 $ matrix. 
 \begin{figure}
 	\centering
 	\includegraphics[height=4cm]{Images/mesh.png}

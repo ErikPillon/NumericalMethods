@@ -15,6 +15,10 @@ clc; clear all; close all;
 w=[0.347855 0.652145 0.652145 0.347855];
 u=[-0.861136 -0.339981 0.339981 0.861136];
 
+%% initialization of the variables
+k = 1;
+h = 1;
+
 %% creation of the big matrices
 % this matrix has to be filled with all the terms of interactions between
 % the internal elements
@@ -28,17 +32,15 @@ for e = 1:N_elements
     % creation of the Jacobian matrix
     [Jac] = jacobian(M, Elem, e); 
     J = det(Jac); %jacobian
-    A = zeros(4);
-    for i = 1:4
-        for j=1:4
-            % evaluation of the 4x4 matrix 
-            % here we will need the gauss points
-        end
-    end
+    
+    %% evaluation of the integral
+    % evaluation of the 4x4 matrix gai_gaj
+    % here we will need the gauss points
+    gai_gaj = = double_integral(M, Elem, e, dx, u, w);
+    Contribution = k*gai_gaj*J;
     % update the global matrix values; it will recollect the global number
     % from the local number and the element e
-    Interaction = update(Interaction, Elem, e, A);
-    
+    Interaction = update(Interaction, Elem, e, Contribution);
 end
     
 for f = 1:N_b_elements
