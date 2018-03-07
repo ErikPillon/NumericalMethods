@@ -16,8 +16,8 @@ eta = [-1, -1, 1, 1];
 
 Jac = zeros(2);
 for i = 1:4
-    [alfa, dalfa_xi, dalfa_eta] = alpha(xi(i),eta(i))
-    Jac(1,1) = Jac(1,1) +dalfa_xi(i)*x_i(i): 
+    [alfa, dalfa_xi, dalfa_eta] = alpha(xi(i),eta(i));
+    Jac(1,1) = Jac(1,1) +dalfa_xi(i)*x_i(i); 
     Jac(1,2) = Jac(1,1) +dalfa_xi(i)*y_i(i);
     Jac(2,1) = Jac(1,1) +dalfa_eta(i)*x_i(i);
     Jac(2,2) = Jac(1,1) +dalfa_eta(i)*y_i(i);

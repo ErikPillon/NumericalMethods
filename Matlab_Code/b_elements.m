@@ -27,3 +27,4 @@ while x > 0
     b_Ele(i,:) = [i-1,i];
     x = x-dx;
 end
+N = i;

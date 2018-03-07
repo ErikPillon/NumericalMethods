@@ -1,0 +1,6 @@
+function [E,e] = mesh(lx,ly,nx,ny,M)
+dx = lx/nx; dy = ly/ny;
+e = 1;
+x=0; y=0;
+for e=1:length(M)
+

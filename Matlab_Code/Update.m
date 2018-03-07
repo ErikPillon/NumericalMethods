@@ -1,4 +1,4 @@
-function [M] = update(M, Elements_matrix, e, A)
+function [M] = Update(M, Elements_matrix, e, A)
 % -------- INPUT ------------
 % Interaction    : matrix to be modified
 % Elements_matrix: matrix of the mesh
@@ -7,6 +7,13 @@ function [M] = update(M, Elements_matrix, e, A)
 % 
 % -------- OUTPUT -----------
 % M: Matrix modified
+
+if size(A) ~= [4,4]
+    error('Local Matrix dimension are not 4x4')
+    M = zeros(4);
+    return
+end
+
 
 
 for i=1:4

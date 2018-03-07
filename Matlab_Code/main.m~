@@ -42,9 +42,8 @@ for e = 1:N_elements
     % update the global matrix values; it will recollect the global number
     % from the local number and the element e
     Interaction = Update(Interaction, Elem, e, Contribution);
+
 end
-rhs = 1000*rand(N_points,1);
-T = Interaction\rhs;
     
 for f = 1:N_b_elements
     B = zeros(2);
