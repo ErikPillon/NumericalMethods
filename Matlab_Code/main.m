@@ -12,7 +12,7 @@ dx = lx/nx; dy = ly/ny;
 [Elem, N_elements] = mesh(lx,ly,nx,ny,M);
 [b_Elem, N_b_elements] = b_elements_thermal(lx,ly,nx,ny);
 
-%% initialization of the points for the gauss quadrature formula
+%% initialization of the points for the gauss quadrature formula points
 w=[0.347855 0.652145 0.652145 0.347855];
 u=[-0.861136 -0.339981 0.339981 0.861136];
 
