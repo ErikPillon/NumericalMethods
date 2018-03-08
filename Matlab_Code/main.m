@@ -10,7 +10,7 @@ dx = lx/nx; dy = ly/ny;
 % creation of the points and of the mesh
 [M, N_points] = points(lx,ly,nx,ny);
 [Elem, N_elements] = mesh(lx,ly,nx,ny,M);
-[b_Elem, N_b_elements] = b_elements(lx,ly,nx,ny);
+[b_Elem, N_b_elements] = b_elements_thermal(lx,ly,nx,ny);
 
 %% initialization of the points for the gauss quadrature formula
 w=[0.347855 0.652145 0.652145 0.347855];
@@ -43,19 +43,20 @@ for e = 1:N_elements
     % from the local number and the element e
     Interaction = Update(Interaction, Elem, e, Contribution);
 end
+
+for f = 1:N_b_elements
+    [Jac] = jacobian(M, Elem, e); 
+    %% evaluation of the 1 dimensional integral
+    % evaluation of the 2x2 matrix ai_aj
+    % here we will need the gauss points
+    ai_aj = integral_1D(M, Elem, f, dx, u, w);
+    Contribution = k*ai_aj*J;
+    % update the global matrix values; it will recollect the global number
+    % from the local number and the element e
+    Interaction = Update(Interaction, Elem, e, Contribution);
+end
+
 rhs = 1000*rand(N_points,1);
 T = Interaction\rhs;
     
-for f = 1:N_b_elements
-    B = zeros(2);
-    for i = 1:2
-        for j=1:2
-            % evaluation of the 2x2 matrix 
-            % here we will need the gauss points
-        end
-    end
-    % update the global matrix values; it will recollect the global number
-    % from the local number and the element e
-    Bound = update(Bound, b_Elem, e, B);
-end
 

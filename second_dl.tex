@@ -119,8 +119,7 @@ where through elementary calculations we can see that
 
 Then the final expression will be
 \begin{align*}
-\sum_e\iint_{\omega_e}\kappa\nabla\alpha_i\cdot\left(\sum_{j=1}^{N}\nabla\alpha_jT_j \right) \xi\diff\xi\diff\eta +\sum_f\int_{\Gamma}\alpha_ih\left(\sum_{j=1}^{N}\alpha_jT_j\right)\diff \eta=
-\sum_f\int_{\Gamma}\alpha_ihT_r\diff \eta+\sum_e\iiint_{\omega_e}\alpha_iQ\,\xi\diff\xi\diff\eta.
+\sum_e\int_{\omega_e}\kappa\nabla\alpha_i\cdot\left(\sum_{j=1}^{N}\nabla\alpha_jT_j \right) \rho(\xi,\eta)\diff\xi\diff\eta +\sum_f\int_{\Gamma}\alpha_i h\left(\sum_{j=1}^{N}\alpha_jT_j\right)\rho(\xi,\eta)\diff\xi\diff \eta = \sum_f\int_{\Gamma}\alpha_i h T_r\rho(\xi,\eta)\diff \eta+\sum_e\int_{\omega_e}\alpha_iQ\,\rho(\xi,\eta)\diff\xi\diff\eta.
 \end{align*}
 
 
@@ -138,5 +137,12 @@ The matrix $ A_{ij}^e $ is a $ 4\times4 $ matrix, for each inner element. For th
 	\centering
 	\includegraphics[height=4cm]{Images/mesh.png}
 	\caption{The boundary elements will have 3 boundaries or 2, depending on which one we are considering.}
+	\label{Img:sample_mesh}
 \end{figure}
+
+For the elements $ 22,23,24,25 $ of Figure \ref{Img:sample_mesh} we have also to develop the integral on the boundary element $ f $
+\[\sum_f\int_{\Gamma}\alpha_i h\left(\sum_{j=1}^{N}\alpha_jT_j\right)\rho(\xi,\eta)\diff\xi\diff \eta \]
+
+The resulting local matrix will be a 2x2 matrix, given by the product $ \alpha_i\cdot\alpha_j $.
+
 
