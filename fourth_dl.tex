@@ -61,13 +61,24 @@ In the program we make use of the following functions:
 	\item \texttt{jacobian(M, Elem, e)} where \texttt{M} is the coordinates matrix and \texttt{Elem} is the mesh matrix, while \texttt{e} is the global element taken into consideration.
 	\item \texttt{alpha(xi,eta)} where \texttt{xi,eta} are the local coordinates.
 	\item \texttt{update} for updating the global matrix with the 16 values obtained for each element $ e $. 
-	\item The functions \texttt{points} and \texttt{mesh} as already stated in Section \ref{sec:4.1} 
-	\item The function \texttt{Update} for putting the values of the local matrix of each element $ e $ (resp. $ f $) in the global matrix $ A $ (resp. $ B $).
+	\item The functions \texttt{points\_electric} and \texttt{mesh} as already stated in Section \ref{sec:4.1} 
+	\item The function \texttt{Update\_electric} for putting the values of the local matrix of each element $ e $ (resp. $ f $) in the global matrix $ A $ (resp. $ B $).
 \end{itemize}
 
 
 
 \subsection{Programming and calculation}
 \subsubsection{Construct the program: main program and functions}
+\lstinputlisting[label={main_electric},caption={main program}]{Matlab_Code/main2.m}
+
+Where we used the function \texttt{jacobian} and \texttt{alpha} listed below.
+
+\lstinputlisting[label={jacobian_electric},caption={Function for the creation of the jacobian matrix for each element}]{Matlab_Code/jacobian.m}
+
+\lstinputlisting[label={alpha},caption={Function for the creation of the alpha functions and the derivatives of the latter}]{Matlab_Code/alpha.m}
+
+\lstinputlisting[label={update},caption={Function for update the global matrix with the values obtained for the local element $ e $}]{Matlab_Code/Update.m}
+
+\lstinputlisting[label={dIntegral},caption={Function for evaluating the double integral$ \iint\nabla\alpha_i\nabla\alpha_j $}]{Matlab_Code/double_integral.m}
 
 

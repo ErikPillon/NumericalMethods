@@ -1,30 +1,42 @@
-% point for the electric part 
-dx=0.01;  dy=0.01;  R=0.1;  L=0.3;
-m=R/dx+1; n=L/dy +1;
+function [M,N] = points_electric()
+% -----   OUTPUT  ---------
+% M: matrix of [x,y] components of the point
+% N: number of points generated
+
+% discretization for the electric part 
+dx=0.01;  dy=0.01;  
+N = 1; % counter
 
 % bottom electrod
-for j=1:(nb-1)
-    for i=1:mb
-        N=N+1;
-        Px(N)=dr*(i-1);
-        Py(N)=dz*(j-1);
+y = 0;
+while y <= 0.02
+    x = 0;
+    while x <= 0.04
+        M(N,:) = [x,y];
+        x = x+dx;
+        N = N+1;
     end
-end                         
- % material
-for j=1:n1
-    for i=1:m
-        N=N+1;
-        Px(N)=dr*(i-1);
-        Py(N)=dz*(j-1)+0.02;
-    end
-end                              
-No=N;
+    y = y+dy;
+end
 
-%top electrod points 
-for j=2:nt
-    for i=1:mt
-        N=N+1;
-        Px(N)=dr*(i-1);
-        Py(N)=dz*(j-1)+0.32;
+% material
+while y <= 0.4
+    x = 0;
+    while x <= 0.1
+        M(N,:) = [x,y];
+        x = x+dx;
+        N = N+1;
     end
+    y = y+dy;
+end
+
+% top electrod
+while y <= 0.1
+    x = 0;
+    while x <= 0.02
+        M(N,:) = [x,y];
+        x = x+dx;
+        N = N+1;
+    end
+    y = y+dy;
 end

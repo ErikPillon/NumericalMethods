@@ -1,16 +1,14 @@
 clc; clear all; close all;
-% this is the main file for the thermal part
+% this is the main file for the electric part
 
 %% discretization of the domain and building of the mesh for the thermal part
 % initialization of the variables lx, ly, nx, ny
-% THESE VALUES MUST BE CHANGED!
-lx = 0.3; ly = 0.5; nx = 10; ny = 10; 
-dx = lx/nx; dy = ly/ny;
+dx = 0.01; dy = 0.01;
 
 % creation of the points and of the mesh
 [M, N_points] = points(lx,ly,nx,ny);
-[Elem, N_elements] = mesh(lx,ly,nx,ny,M);
-[b_Elem, N_b_elements] = b_elements_thermal(lx,ly,nx,ny);
+[Elem, N_elements] = mesh_electric(M);
+[b_Elem, N_b_elements] = b_elements_electric(lx,ly,nx,ny);
 
 %% initialization of the points for the gauss quadrature formula
 w=[0.347855 0.652145 0.652145 0.347855];
@@ -18,7 +16,7 @@ u=[-0.861136 -0.339981 0.339981 0.861136];
 
 %% initialization of the variables
 k = 1;
-h = 1;
+sigma = 1;
 
 %% creation of the big matrices
 % this matrix has to be filled with all the terms of interactions between
@@ -35,7 +33,7 @@ for e = 1:N_elements
     % evaluation of the 4x4 matrix gai_gaj
     % here we will need the gauss points
     gai_gaj = double_integral(M, Elem, e, dx, u, w);
-    Contribution = k*gai_gaj*J;
+    Contribution = sigma*gai_gaj*J;
     % update the global matrix values; it will recollect the global number
     % from the local number and the element e
     Interaction = Update(Interaction, Elem, e, Contribution);
