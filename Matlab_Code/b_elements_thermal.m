@@ -15,3 +15,5 @@ for x=0:dx:lx
     i = i+1;
     f=f+1;
 end
+% total number of boundary elements
+N = f-1; 

@@ -25,9 +25,6 @@ h = 1;
 % the internal elements
 Interaction = zeros(N_points);
 
-% this matrix must bel filled with the terms given by the boundary effects
-Bound = zeros(N_points);
-
 %% evaluation of the integral on the variuos elements of the basis
 for e = 1:N_elements
     % creation of the Jacobian matrix
@@ -44,16 +41,19 @@ for e = 1:N_elements
     Interaction = Update(Interaction, Elem, e, Contribution);
 end
 
+% this matrix must bel filled with the terms given by the boundary effects
+Bound = zeros(N_points);
 for f = 1:N_b_elements
-    [Jac] = jacobian(M, Elem, e); 
+    [Jac] = jacobian(M, Elem, e);
+    J = det(Jac);
     %% evaluation of the 1 dimensional integral
     % evaluation of the 2x2 matrix ai_aj
     % here we will need the gauss points
-    ai_aj = integral_1D(M, Elem, f, dx, u, w);
-    Contribution = k*ai_aj*J;
+    ai_aj = integral_1D(M, b_Elem, f, dx, u, w);
+    Contribution_boundary = k*ai_aj*J;
     % update the global matrix values; it will recollect the global number
     % from the local number and the element e
-    Interaction = Update(Interaction, Elem, e, Contribution);
+    Interaction = Update_boundary(Bound, b_Elem, f, Contribution_boundary);
 end
 
 rhs = 1000*rand(N_points,1);
