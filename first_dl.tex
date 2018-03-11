@@ -53,6 +53,18 @@ Give the expression of the current density and of the Joule power density.
 	\item Give the partial differential equation of the thermal problem.
 	\item Give the boundary conditions of the thermal problem.
 \end{itemize}
+A medium through which electric current is conducted may involve the conversion of electrical or chemical energy into heat (or thermal en-
+ergy), like in our case (i.e., Joule effect). In heat conduction analysis, such conversion processes are characterized as heat (or thermal energy) generation.
+For example, the temperature of a resistance wire rises rapidly when elec-
+tric current passes through it as a result of the electrical energy being converted to heat at a rate of $ I^2R $, where $ I $ is the current and $ R $ is the electrical resistance of the wire. 
+Note  that  heat  generation  is  a  volumetric  phenomenon. That  is, it  occurs throughout the body of a medium. Therefore, the rate of heat generation in a medium is denoted per unit volume. The rate of heat generation in a medium may vary with time as well as position within the medium. When the variation of heat generation with position
+is known, the 
+total
+rate of heat generation in a medium of volume $ V $ can be determined from
+\[Q = \dot{q}=\int_V q_{gen}\diff V. \]
+In  our case, where there's no time dependence on the process of heat  generation,  as  in  the  case  of  electric
+resistance heating throughout a homogeneous material, the relation reduces to 
+\[Q = \int_{V}q\diff V. \]
 \begin{mdframed}
 	The Fourier Law tells us that:
 	\begin{equation}
