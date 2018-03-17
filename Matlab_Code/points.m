@@ -1,4 +1,7 @@
 function [M,N] = points(lx,ly,nx,ny)
+% ---   INPUT  ---
+% lx, ly : lenghts
+% nx, ny : number of points of the discretization
 % -----   OUTPUT  ---------
 % M: matrix of [x,y] components of the point
 % N: number of points generated
@@ -13,6 +16,6 @@ for y=0:dy:ly
         i=i+1; %update the counter
     end
 end
-N = i;
+N = i-1;
 end
 

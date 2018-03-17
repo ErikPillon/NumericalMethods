@@ -1,4 +1,4 @@
-function [E,e] = mesh(lx,ly,nx,ny,M)
+function [E,e] = mesh_domain(lx,ly,nx,ny,M)
 % -----   INPUT   ----------
 % lx, ly : characteristica lengths of the problem
 % nx, ny : number of points in each direction
