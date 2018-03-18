@@ -61,6 +61,6 @@ T = (Interaction+Bound)\rhs;
 
 figure
 mesh(reshape(T,11,11))
-filename = 'Temperature result';
+filename = 'Temperature_result';
 print(filename,'-deps')
 

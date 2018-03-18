@@ -32,12 +32,24 @@ In the program we make use of the following functions:
 \end{itemize}
 
 
+In Fig.~\ref{fig:non-coupled_thermal_problem} is plotted the 3D mesh of the non coupled solution for the Thermal Problem. 
+\begin{figure}[htbp]
+	\centering
+	\includegraphics{Matlab_Code/Temperature_result}
+	\caption{Result for the non-coupled thermal problem}
+	\label{fig:non-coupled_thermal_problem}
+\end{figure}
+
+
 
 \subsection{Programming and calculation}
 \subsubsection{Construct the program: main program and functions}
+In the following we paste the code used in the resolution of the thermal problem. 
+Listing \ref{main} is the \texttt{main} file used for the resolution. In the middle we've used several different functions, that are listed below.
+
 \lstinputlisting[label={main},caption={main program}]{Matlab_Code/main.m}
 
-Where we used the function \texttt{jacobian} and \texttt{alpha} listed below.
+Where we used the function \texttt{jacobian}, \texttt{alpha}, \texttt{update} and \texttt{dIntegral} listed below.
 
 \lstinputlisting[label={jacobian},caption={function for the creation of the jacobian matrix for each element}]{Matlab_Code/jacobian.m}
 
@@ -46,3 +58,4 @@ Where we used the function \texttt{jacobian} and \texttt{alpha} listed below.
 \lstinputlisting[label={update},caption={Function for update the global matrix with the values obtained for the local element $ e $}]{Matlab_Code/Update.m}
 
 \lstinputlisting[label={dIntegral},caption={Function for evaluating the double integral$ \iint\nabla\alpha_i\nabla\alpha_j $}]{Matlab_Code/double_integral.m}
+
