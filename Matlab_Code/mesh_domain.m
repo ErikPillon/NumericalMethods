@@ -1,4 +1,6 @@
-function [E,e] = mesh_domain(lx,ly,nx,ny,M)
+function [E,n_Points] = mesh_domain(lx,ly,nx,ny,M)
+% this is the algorithm for the discretization of the electrical problem
+% part
 % -----   INPUT   ----------
 % lx, ly : characteristica lengths of the problem
 % nx, ny : number of points in each direction
@@ -7,18 +9,15 @@ function [E,e] = mesh_domain(lx,ly,nx,ny,M)
 % E : Matrix in which are stored all the points of each element
 % e : number of elements
 
-
-
 dx = lx/nx; dy = ly/ny;
 e = 1;
-x=0; y=0;
+x=0; y=0; % starting point
 for iter=1:length(M)
     if M(iter,1)<lx & M(iter,2)<ly
-        E(e,:) = [iter,iter+1,iter+1+nx,iter+nx];
+        E(e,:) = [iter,iter+1,iter+1+nx+1,iter+nx+1];
         e = e+1;
     end
 end
-% we want to return the number of the elements we've generated
-e = length(E);
+n_Points = length(E);
 
 

@@ -14,8 +14,6 @@ if size(A) ~= [4,4]
     return
 end
 
-
-
 for i=1:4
     for j=1:4
         M(Elements_matrix(e,i),Elements_matrix(e,j)) = M(Elements_matrix(e,i),Elements_matrix(e,j))+A(i,j);

@@ -1,7 +1,16 @@
-function [B] = integral_1D(M, b_elem, f, dx, u, w)  
+function [B] = integral_1D(M, b_Elem, f, dx, u, w)
+% function for evaluating a 1D integral
+% --- INPUT  ---
+% M      : x,y coordinates of the points
+% b_Elem : global matrix of the boundary elements
+% f      : global number of the boundary element considered
+% dx     : x displacement
+% u,w    : Gauss nodes
+% --- OUTPUT ---
+% B : Term for the updating
 
 B = zeros(2);
-r = M(b_elem(f,1),1);
+r = M(b_Elem(f,1),1);
 
 for i = 1:2
     for j = 1:2

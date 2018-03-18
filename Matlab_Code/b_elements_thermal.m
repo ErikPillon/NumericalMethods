@@ -8,12 +8,12 @@ function [b_Ele,N] = b_elements_thermal(lx,ly,nx,ny)
 y = ly; 
 dx = lx/nx;
 
-i = nx*(ny-1); % we want to start with the top-left point
+i = 1+(nx+1)*ny; % we want to start with the top-left point
 f = 1;
-for x=0:dx:lx
+for x=0:dx:lx-dx
     b_Ele(f,:) = [i,i+1];
     i = i+1;
     f=f+1;
 end
 % total number of boundary elements
-N = f-1; 
+N = length(b_Ele); 

@@ -22,8 +22,9 @@
 	The algorithm presented in Listing \ref{mesh} takes care of numbering in a proper way the elements basis and the points we have generated with the alorithm \texttt{points}.
 	\lstinputlisting[label={mesh},caption={Build relationship for local point and overall point}]{Matlab_Code/mesh_domain.m}
 	
-	In Listing \ref{b_points_electric} we give an algorithm for the mesh of the boundary elements.  
-	\lstinputlisting[label={b_elements_electric},caption={Algorithm for boundary elements}]{Matlab_Code/b_elements.m}
+	In Listing \ref{b_elements_electric} we give an algorithm for the mesh of the boundary elements. Since in the thermal part we have free boundary conditions in all the surface except on the upper surface, in which we have a Neumann boundary condition, we discretize only the upper surface. 
+	  
+	\lstinputlisting[label={b_elements_electric},caption={Algorithm for boundary elements}]{Matlab_Code/b_elements_thermal.m}
 \end{mdframed}
 \subsection{Galerkin’s Formulation of Heat Transfer Equation}
 \subsubsection{Projection of the partial differential equation on an element of the basis of the functions $ \alpha_i $}
