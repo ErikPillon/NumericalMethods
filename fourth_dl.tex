@@ -30,7 +30,7 @@ The change of variable given by Eq.\ref{change2} gives as determinant of the Jac
 The second change of variables will be 
 \begin{align}\label{change3}
 (r,\theta,z)&\to(\xi,\eta)\\
-(r,\theta,z)&\mapsto(\xi(r,z),\eta(r,z)\nonumber
+(r,\theta,z)&\mapsto(\xi(r,z),\eta(r,z))\nonumber
 \end{align}
 and we will have $ dxdydz=det(Jac)d\xi d\eta $.
 \subsection{Algorithm of the Finite Element Formulation of the Electrical Equation}
@@ -51,7 +51,7 @@ and we will have $ dxdydz=det(Jac)d\xi d\eta $.
 			\item Evaluate all the 4 terms $ \alpha_i\alpha_j $ with the help of the 1D Gauss quadrature formula.
 			\item Update the global matrix $ B $ with the function \texttt{Update} modified for the boundary elements
 		\end{itemize}
-		\item Solve the linear problem $ (A_{ij}+B_{ij})T_i = Q_i $
+		\item Solve the linear problem $ (A_{ij}+B_{ij})U_i = rhs $
 	\end{itemize}
 \end{mdframed}
 

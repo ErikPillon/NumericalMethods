@@ -1,9 +1,10 @@
 % !TeX spellcheck = en_US
 \subsection{Algorithm of the Finite Element Formulation of Heat Transfer Equation}
+The algorithm goes as follows:
 \begin{mdframed}
-	The algorithm goes as follows:
 	\begin{itemize}
 		\item Discretize the domain and build the mesh.
+		\item Initialize the variables like heat conductivity, electrical conductivity, room Temperature, the Gauss nodes. 
 		\item For each element $ e $ of the domain:
 		\begin{itemize}
 			\item Construct the Jacobian matrix $ Jac $ with the functions $ \alpha_i $
@@ -13,12 +14,14 @@
 		\end{itemize}
 		\item For each element $ f $ of the upper boundary:
 		\begin{itemize}
-			\item Construct the Jacobian $ Jac $ (that is already a scalar value) with the functions $ \alpha_1 $ and $ \alpha_2 $
+			\item Construct the Jacobian $ Jac $ with the functions $ \alpha_1 $ and $ \alpha_2 $
 			\item Evaluate all the 4 terms $ \alpha_i\alpha_j $ with the help of the 1D Gauss quadrature formula.
+			\item Add the source term for the nearest neighbor.
 			\item Update the global matrix $ B $ with the function \texttt{Update} modified for the boundary elements
 		\end{itemize}
-		\item Solve the linear problem $ (A_{ij}+B_{ij})T_i = Q_i $
+		\item Solve the linear problem $ (A_{ij}+B_{ij})T_i = \text{rhs} $
 	\end{itemize}
+	
 \end{mdframed}
 
 
@@ -28,7 +31,11 @@ In the program we make use of the following functions:
 	\item \texttt{alpha(xi,eta)} where \texttt{xi,eta} are the local coordinates.
 	\item \texttt{update} for updating the global matrix with the 16 values obtained for each element $ e $. 
 	\item The functions \texttt{points} and \texttt{mesh} as already stated in Section \ref{sec:4.1} 
+	\item \texttt{heat\_contribution}
+	\item \texttt{integral\_1D}
 	\item The function \texttt{Update} for putting the values of the local matrix of each element $ e $ (resp. $ f $) in the global matrix $ A $ (resp. $ B $).
+	\item \texttt{Update\_rhs}
+	\item \texttt{neumann\_condition} for evaluating the contribution given only on the upper free surface.
 \end{itemize}
 
 
@@ -47,7 +54,7 @@ In Fig.~\ref{fig:non-coupled_thermal_problem} is plotted the 3D mesh of the non 
 In the following we paste the code used in the resolution of the thermal problem. 
 Listing \ref{main} is the \texttt{main} file used for the resolution. In the middle we've used several different functions, that are listed below.
 
-\lstinputlisting[label={main},caption={main program}]{Matlab_Code/main.m}
+\lstinputlisting[label={main},caption={main program},lastline=85]{Matlab_Code/main.m}
 
 Where we used the function \texttt{jacobian}, \texttt{alpha}, \texttt{update} and \texttt{dIntegral} listed below.
 
@@ -58,4 +65,12 @@ Where we used the function \texttt{jacobian}, \texttt{alpha}, \texttt{update} an
 \lstinputlisting[label={update},caption={Function for update the global matrix with the values obtained for the local element $ e $}]{Matlab_Code/Update.m}
 
 \lstinputlisting[label={dIntegral},caption={Function for evaluating the double integral$ \iint\nabla\alpha_i\nabla\alpha_j $}]{Matlab_Code/double_integral.m}
+
+\lstinputlisting[caption={}]{Matlab_Code/Update_rhs.m}
+
+\lstinputlisting[caption={Function for evaluating the contribution given by the Joule effect. For the non coupled problem $ Q $ will be considered constant and equal to 1}]{Matlab_Code/heat_contribution.m}
+
+\lstinputlisting[caption={}]{Matlab_Code/Update_boundary.m}
+
+\lstinputlisting[caption={}]{Matlab_Code/neumann_condition.m}
 

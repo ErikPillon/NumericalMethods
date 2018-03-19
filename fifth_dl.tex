@@ -1,0 +1,15 @@
+% !TeX spellcheck = en_US
+\section{Model the coupled problem with the finite element method}
+\subsection{Finite Element Formulation}
+The problem essentially is solved coupling the two equations: first must be solved the electric problem and then the thermal problem; the link between the two equations is the term $ Q = J\cdot E=\sigma(\nabla U)^2. $ 
+
+\subsection{Algorithm of the Finite Element Formulation for the Coupled Problem}
+\begin{mdframed}
+	The algorithm goes as follows:
+	\begin{itemize}
+		\item Discretize the domain and build the mesh.
+		\item For each element $ e $ of the domain solve the electrical part as in the program \texttt{main2.m}
+		\item With the value obtained from the electric problem extract for each element the heat $ Q $.
+		\item Solve the thermal problem using the non constant value $ Q $ for each element.
+	\end{itemize}
+\end{mdframed}
