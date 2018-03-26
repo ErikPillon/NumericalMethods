@@ -10,6 +10,12 @@ The problem essentially is solved coupling the two equations: first must be solv
 		\item Discretize the domain and build the mesh.
 		\item For each element $ e $ of the domain solve the electrical part as in the program \texttt{main2.m}
 		\item With the value obtained from the electric problem extract for each element the heat $ Q $.
-		\item Solve the thermal problem using the non constant value $ Q $ for each element.
+		\item Solve the thermal problem using the non constant value $ Q $ for each element with the script in \texttt{main1}
+		\item Plot the results
 	\end{itemize}
 \end{mdframed}
+
+\lstinputlisting[label={main_coupled},caption={Main program for the coupled problem.}]{Matlab_Code/main3.m}
+
+The functions for the above code can be easily extracted from the previous sections since the coupled problem is only a merge of the two problems before.
+

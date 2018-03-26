@@ -1,7 +1,7 @@
 clc; clear all; close all;
 % this is the main file for the electric part
 
-%% discretization of the domain and building of the mesh for the thermal part
+%% discretization of the domain and building of the mesh for electric part
 % initialization of the variables lx, ly, nx, ny
 dx = 0.01; dy = 0.01;
 
@@ -24,7 +24,7 @@ k2 = 2.5e5;
 
 %% Value of the potentials at the extrema for the Dirichlet conditions
 U0 = 0;
-DeltaU = 
+DeltaU = 100;
 
 %% creation of the big matrices
 % this matrix has to be filled with all the terms of interactions between
@@ -58,8 +58,23 @@ rhs = zeros(N_points, 1);
 % as boundary effect we only have to keep fixed the values at the boundary
 % of the electrods
 n_elements_bottom = 0.04/dx;
-rhs(1:n_elements_bottom) = 
-U = (Interaction+Bound)\rhs;
+rhs(1:n_elements_bottom) = U0;
+n_elements_top = 0.02/dx;
+rhs(end-n_elements_top,end) = DeltaU;
+% now we have to modify the matrix in a way that they must be kept fixed to
+% that value
+Total = Interaction+Bound;
+for i = 1:n_elements_bottom = 0.04/dx;
+    Total(i,:) = zeros(1,N_elements);
+    Total(i,i) = 1;
+end
+
+for i = N_elements-n_elements_bottom:n_elements_bottom
+    Total(i,:) = zeros(1,N_elements);
+    Total(i,i) = 1;
+end
+
+U = (Total)\rhs;
 
 
 
