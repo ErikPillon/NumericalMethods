@@ -1,7 +1,18 @@
 % !TeX spellcheck = en_US
 \section{Model the Electrical Problem with the Finite Elements Method}
 \subsection{Study Domain and Mesh}
-Since the domian of interest of the electric problem is larger than the thermal problem, we have to slightly modify our algorithm. We then have the algorithm in Listing \ref{points_electric}, where we have put in input of our function \texttt{mesh electric} the number of points in which we want to discretize our domain.
+
+\begin{figure}[htbp]
+	\begin{minipage}[c]{.5\linewidth}
+		Since the domain of interest of the electric problem is larger than the thermal problem, we have to slightly modify our algorithm. We then have the algorithm in Listing \ref{points_electric}, where we have put in input of our function \texttt{mesh electric} the number of points in which we want to discretize our domain. In Fig.~ is painted the domanin of interest for this part of the problem.   
+	\end{minipage} \hfill
+	\begin{minipage}[c]{.5\linewidth}
+		\centering
+		\includegraphics[height=3cm]{Images/electric_domain.png}
+		\caption{Domain of interest of the electric part}
+		\label{figure:electric_domain}
+	\end{minipage}
+\end{figure}
 
 \lstinputlisting[label={points_electric},caption={Points}]{Matlab_Code/points_electric.m}
 

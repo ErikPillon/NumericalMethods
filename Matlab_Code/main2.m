@@ -7,6 +7,8 @@ dx = 0.01; dy = 0.01;
 
 % creation of the points and of the mesh
 [M, N_points] = points_electric();
+% the mesh is slightly different because we have to take into account the
+% fact that the domanin is different
 [Elem, N_elements] = mesh_electric(M);
 [b_Elem, N_b_elements] = b_elements_electric(lx,ly,nx,ny);
 
