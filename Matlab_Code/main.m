@@ -22,7 +22,7 @@ h = 80,2; % W/(m* K)
 % temperature of the environment is kept fixed at 300K
 Tr = 300;
 % for the non-coupled problem we take Q=1 constant
-Q = 1;
+Q = 1e3;
 % initialize the rhs
 % at the ened the system to solve will be (A+B)*T=rhs
 rhs = zeros(N_points,1);
@@ -92,5 +92,5 @@ xlabel('x')
 ylabel('y')
 zlabel('Temperature')
 filename = 'Temperature_result';
-print(filename,'-deps')
+print(filename,'-depsc')
 

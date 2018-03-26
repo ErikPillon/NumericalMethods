@@ -1,4 +1,5 @@
 function [E,e] = mesh_electric(M)
+% algorithm for the creation of the mesh for the electrical part
 % -----   INPUT   ----------
 % M : Matrix in which are stored the x and y coordinates of the points 
 % -----   OUTPUT   ---------
@@ -42,5 +43,4 @@ while y <= 0.1
     end
     y = y+dy;
 end
-
 end

@@ -60,17 +60,22 @@ Where we used the function \texttt{jacobian}, \texttt{alpha}, \texttt{update} an
 
 \lstinputlisting[label={jacobian},caption={function for the creation of the jacobian matrix for each element}]{Matlab_Code/jacobian.m}
 
+
+The function \ref{alpha} is used for the creation of the alpha functions $ \alpha_i $ which will be used as the element basis of the local elements.
 \lstinputlisting[label={alpha},caption={Function for the creation of the alpha functions and the derivatives of the latter}]{Matlab_Code/alpha.m}
- 
-\lstinputlisting[label={update},caption={Function for update the global matrix with the values obtained for the local element $ e $}]{Matlab_Code/Update.m}
+
+The function \ref{update_thermal} is used for updating the global matrix with the values evaluated for each element of the domain and properly put in position $ (i,j) $.
+\lstinputlisting[label={update_thermal},caption={Function for update the global matrix with the values obtained for the local element $ e $}]{Matlab_Code/Update.m}
 
 \lstinputlisting[label={dIntegral},caption={Function for evaluating the double integral$ \iint\nabla\alpha_i\nabla\alpha_j $}]{Matlab_Code/double_integral.m}
 
-\lstinputlisting[caption={}]{Matlab_Code/Update_rhs.m}
+The function \ref{Updaterhs} is used for updating the right hand side of the equation with all the contributions evaluated for every boundary element.
+\lstinputlisting[label={Updaterhs}, caption={Update the right hand side of the equation}]{Matlab_Code/Update_rhs.m}
 
 \lstinputlisting[caption={Function for evaluating the contribution given by the Joule effect. For the non coupled problem $ Q $ will be considered constant and equal to 1}]{Matlab_Code/heat_contribution.m}
 
-\lstinputlisting[caption={}]{Matlab_Code/Update_boundary.m}
+\lstinputlisting[caption={Update the global matrix of the problem with the boundary conditions}]{Matlab_Code/Update_boundary.m}
 
-\lstinputlisting[caption={}]{Matlab_Code/neumann_condition.m}
+The function \ref{neumann} is used for taking into account the neumann boundary conditions in the problem.
+\lstinputlisting[label={neumann}, caption={neumann}]{Matlab_Code/neumann_condition.m}
 

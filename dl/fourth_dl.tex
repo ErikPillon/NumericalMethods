@@ -1,7 +1,9 @@
 % !TeX spellcheck = en_US
 \section{Model the Electrical Problem with the Finite Elements Method}
 \subsection{Study Domain and Mesh}
+In this part we will study the electric part of the problem with the finite elements method. As usual first we will give the domain in which we investigate the problem, then a numerical scheme for the discretization of the domain is given and at the end we will implement the finite elements method.
 
+\label{sec:5.1}
 \begin{figure}[htbp]
 	\begin{minipage}[c]{.5\linewidth}
 		Since the domain of interest of the electric problem is larger than the thermal problem, we have to slightly modify our algorithm. We then have the algorithm in Listing \ref{points_electric}, where we have put in input of our function \texttt{mesh electric} the number of points in which we want to discretize our domain. In Fig.~ is painted the domanin of interest for this part of the problem.   
@@ -13,6 +15,12 @@
 		\label{figure:electric_domain}
 	\end{minipage}
 \end{figure}
+
+\bigskip
+
+The two followings algorithm are very similar to the ones given in section \ref{sec:4.1} for the thermal part, but we have to add to more points due to the domain constraints that now is larger.
+
+\bigskip 
 
 \lstinputlisting[label={points_electric},caption={Points}]{Matlab_Code/points_electric.m}
 
@@ -72,7 +80,7 @@ In the program we make use of the following functions:
 	\item \texttt{jacobian(M, Elem, e)} where \texttt{M} is the coordinates matrix and \texttt{Elem} is the mesh matrix, while \texttt{e} is the global element taken into consideration.
 	\item \texttt{alpha(xi,eta)} where \texttt{xi,eta} are the local coordinates.
 	\item \texttt{update} for updating the global matrix with the 16 values obtained for each element $ e $. 
-	\item The functions \texttt{points\_electric} and \texttt{mesh} as already stated in Section \ref{sec:4.1} 
+	\item The functions \texttt{points\_electric} and \texttt{mesh} as already stated in Section \ref{sec:5.1} in Listing~\ref{points_electric} and Listing~\ref{mesh_electric} 
 	\item The function \texttt{Update\_electric} for putting the values of the local matrix of each element $ e $ (resp. $ f $) in the global matrix $ A $ (resp. $ B $).
 \end{itemize}
 
@@ -86,8 +94,10 @@ Where we used the function \texttt{jacobian} and \texttt{alpha} listed below.
 
 \lstinputlisting[label={jacobian_electric},caption={Function for the creation of the jacobian matrix for each element}]{Matlab_Code/jacobian.m}
 
+The function \texttt{alpha} is used for the creation of the alpha functions $ \alpha_i $ which will be used as the element basis of the local elements. This function is exactly the same we used for the thermal problem.
 \lstinputlisting[label={alpha},caption={Function for the creation of the alpha functions and the derivatives of the latter}]{Matlab_Code/alpha.m}
 
+The function \ref{update} is used for updating the global matrix with the values evaluated for each element of the domain and properly put in position $ (i,j) $. 
 \lstinputlisting[label={update},caption={Function for update the global matrix with the values obtained for the local element $ e $}]{Matlab_Code/Update.m}
 
 \lstinputlisting[label={dIntegral},caption={Function for evaluating the double integral$ \iint\nabla\alpha_i\nabla\alpha_j $}]{Matlab_Code/double_integral.m}
